@@ -1,0 +1,78 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Model Driven Form with Custom Validator (Directive) Example</div>
+  <div class="panel-body">
+      <form #form2="ngForm" class="form">
+        <!-- ************************************************* -->
+        <div>Custom Static validator using Directive</div>
+        <div class="form-group">
+          <label for="amount1">Amount</label>
+          <input type="text" 
+            class="form-control" 
+            id="amount1" 
+            [(ngModel)]="model.amount1" name="amount1" #amount1="ngModel"
+            required
+            pattern="^\$?\d+(,\d{3})*\.?[0-9]?[0-9]?$"
+            amountValidate>
+
+          <div class="error-text" *ngIf="amount1.errors 
+          && (amount1.dirty || amount1.touched)">
+            <!--Error to display required -->
+            <p *ngIf="amount1.errors.required">Amount is required</p>
+            <!--Error to display pattern -->
+            <p *ngIf="amount1.errors.pattern">Invalid Amount</p>
+            <!--Error to display custom validation -->
+            <p *ngIf="amount1.errors.validateAmount
+          && amount1.errors.validateAmount.type ==='min'">
+              Amount must be greater than 50</p>
+            <p *ngIf="amount1.errors.validateAmount
+          && amount1.errors.validateAmount.type ==='max'">
+              Amount must be less than 5000</p>
+          </div>
+        </div>
+
+        <!-- ************************************************* -->
+        <div>Custom validator using Directive with dependency</div>
+        <div class="form-group">
+          <label for="amount2">Amount</label>
+          <input type="text" 
+            class="form-control" 
+            id="amount2" 
+            [(ngModel)]="model.amount2" 
+            name="amount2" 
+            #amount2="ngModel" 
+            required
+            pattern="^\$?\d+(,\d{3})*\.?[0-9]?[0-9]?$"
+            amountNotAllowedValidate="25"
+            [amountRangeValidate]="[10,50]">
+          <!-- amountRangeValidate [minAmount]="31" [maxAmount]="300" -->
+
+          <div class="error-text" *ngIf="amount2.errors 
+            && (amount2.dirty || amount2.touched)">
+            <!--Error to display required -->
+            <p *ngIf="amount2.errors.required">Amount is required</p>
+            <!--Error to display pattern -->
+            <p *ngIf="amount2.errors.pattern">Invalid Amount</p>
+            <!--Error to display custom validation -->
+            <p *ngIf="amount2.errors.validateNotAllowed
+            && amount2.errors.validateNotAllowed.type ==='notAllowed'">
+              Amount 
+              <b>{{amount2.errors.validateNotAllowed.value}}</b> 
+              is not allowed
+            </p>
+            <p *ngIf="amount2.errors.validateAmount
+            && amount2.errors.validateAmount.type ==='min'">
+              Amount must be greater than
+              <b>{{amount2.errors.validateAmount.value}}</b>
+            </p>
+            <p *ngIf="amount2.errors.validateAmount
+            && amount2.errors.validateAmount.type ==='max'">
+              Amount must be less than
+              <b>{{amount2.errors.validateAmount.value}}</b>
+            </p>
+          </div>
+        </div>
+        <!-- ************************************************* -->
+
+      </form>
+  </div>
+</div>
