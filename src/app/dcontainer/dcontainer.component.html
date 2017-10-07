@@ -7,8 +7,7 @@
         <div class="form-group">
           <label for="amount1">Amount</label>
           <input type="text" 
-            class="form-control" 
-            id="amount1" 
+            id="amount1" class="form-control"
             [(ngModel)]="model.amount1" name="amount1" #amount1="ngModel"
             required
             pattern="^\$?\d+(,\d{3})*\.?[0-9]?[0-9]?$"
@@ -35,11 +34,8 @@
         <div class="form-group">
           <label for="amount2">Amount</label>
           <input type="text" 
-            class="form-control" 
-            id="amount2" 
-            [(ngModel)]="model.amount2" 
-            name="amount2" 
-            #amount2="ngModel" 
+            id="amount2" class="form-control"
+            [(ngModel)]="model.amount2" name="amount2" #amount2="ngModel" 
             required
             pattern="^\$?\d+(,\d{3})*\.?[0-9]?[0-9]?$"
             amountNotAllowedValidate="25"
