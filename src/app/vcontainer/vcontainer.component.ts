@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
-import { amountStaticValidator, amountRangeValidator, amountNotAllowedValidator } from 'app/shared/customvalidators';
+import { amountValidator, amountRangeValidator, amountNotAllowedValidator } from 'app/shared/customvalidators';
 
 
 @Component({
@@ -17,7 +17,7 @@ export class VcontainerComponent implements OnInit {
       amount1: new FormControl(null,
         [Validators.required,
         Validators.pattern(/^\$?\d+(,\d{3})*\.?[0-9]?[0-9]?$/.source),
-        amountStaticValidator]),
+        amountValidator]),
       amount2: new FormControl(null,
         [Validators.required,
         Validators.pattern(/^\$?\d+(,\d{3})*\.?[0-9]?[0-9]?$/.source),
